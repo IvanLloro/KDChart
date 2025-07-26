@@ -30,10 +30,10 @@ class EntryDialog(QDialog):
         self.init()
 
     def init(self):
-        self.ui.type.addItem("Event", KDGantt.TypeEvent)
-        self.ui.type.addItem("Task", KDGantt.TypeTask)
-        self.ui.type.addItem("Summary", KDGantt.TypeSummary)
-        self.ui.type.addItem("Multi", KDGantt.TypeMulti)
+        self.ui.type.addItem("Event", KDGantt.ItemType.TypeEvent)
+        self.ui.type.addItem("Task", KDGantt.ItemType.TypeTask)
+        self.ui.type.addItem("Summary", KDGantt.ItemType.TypeSummary)
+        self.ui.type.addItem("Multi", KDGantt.ItemType.TypeMulti)
 
         for row in range(0, self.model.rowCount()):
             self.addDependItem(self.model, self.model.index(row, 0), 0)

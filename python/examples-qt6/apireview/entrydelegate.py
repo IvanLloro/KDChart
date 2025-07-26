@@ -43,7 +43,7 @@ class EntryDelegate(QItemDelegate):
         model.setData(model.index(row, 0, parent), dialog.name())
         model.setData(model.index(row, 1, parent), dialog.type())
 
-        if dialog.type() != KDGantt.TypeSummary:
+        if dialog.type() != KDGantt.ItemType.TypeSummary:
             model.setData(model.index(row, 2, parent), dialog.startDate())
             model.setData(model.index(row, 3, parent), dialog.endDate())
 

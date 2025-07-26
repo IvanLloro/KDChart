@@ -140,7 +140,7 @@ class MainWindow(QMainWindow):
 
         selectedIndex = selected.indexes()[0]
         dataType = self.model.data(self.model.index(selectedIndex.row(), 1))
-        if dataType in [KDGantt.TypeEvent, KDGantt.TypeTask]:
+        if dataType in [KDGantt.ItemType.TypeEvent, KDGantt.ItemType.TypeTask]:
             self.newEntryAction.setEnabled(False)
             self.removeEntryAction.setEnabled(True)
             return
@@ -170,11 +170,11 @@ class MainWindow(QMainWindow):
 
         self.model.setData(self.model.index(row, 0, parent), dialog.name())
         self.model.setData(self.model.index(row, 1, parent), dialog.type())
-        if dialog.type() != KDGantt.TypeSummary:
+        if dialog.type() != KDGantt.ItemType.TypeSummary:
             self.model.setData(self.model.index(row, 2, parent),
-                               dialog.startDate(), KDGantt.StartTimeRole)
+                               dialog.startDate(), KDGantt.ItemDataRole.StartTimeRole)
             self.model.setData(self.model.index(row, 3, parent),
-                               dialog.endDate(), KDGantt.EndTimeRole)
+                               dialog.endDate(), KDGantt.ItemDataRole.EndTimeRole)
 
         self.model.setData(self.model.index(
             row, 4, parent), dialog.completion())
@@ -225,7 +225,7 @@ class MainWindow(QMainWindow):
     def addDemoEntry(self):
         softwareRelease = MyStandardItem("Software Release")
         codeFreeze = MyStandardItem("Code Freeze")
-        codeFreeze.setData(KDGantt.TextPositionRole,
+        codeFreeze.setData(KDGantt.ItemDataRole.TextPositionRole,
                            StyleOptionGanttItem.Right)
         packaging = MyStandardItem("Packaging")
         upload = MyStandardItem("Upload")
@@ -234,30 +234,30 @@ class MainWindow(QMainWindow):
 
         now = QDateTime.currentDateTime()
         softwareRelease.appendRow([codeFreeze,
-                                   MyStandardItem(KDGantt.TypeEvent),
-                                   MyStandardItem(now, KDGantt.StartTimeRole)])
+                                   MyStandardItem(KDGantt.ItemType.TypeEvent),
+                                   MyStandardItem(now, KDGantt.ItemDataRole.StartTimeRole)])
         softwareRelease.appendRow([packaging,
-                                   MyStandardItem(KDGantt.TypeTask),
+                                   MyStandardItem(KDGantt.ItemType.TypeTask),
                                    MyStandardItem(now.addDays(
-                                       5), KDGantt.StartTimeRole),
-                                   MyStandardItem(now.addDays(10), KDGantt.EndTimeRole)])
+                                       5), KDGantt.ItemDataRole.StartTimeRole),
+                                   MyStandardItem(now.addDays(10), KDGantt.ItemDataRole.EndTimeRole)])
         softwareRelease.appendRow([upload,
-                                   MyStandardItem(KDGantt.TypeTask),
+                                   MyStandardItem(KDGantt.ItemType.TypeTask),
                                    MyStandardItem(now.addDays(10).addSecs(
-                                       2 * 60 * 60), KDGantt.StartTimeRole),
-                                   MyStandardItem(now.addDays(11), KDGantt.EndTimeRole)])
+                                       2 * 60 * 60), KDGantt.ItemDataRole.StartTimeRole),
+                                   MyStandardItem(now.addDays(11), KDGantt.ItemDataRole.EndTimeRole)])
         softwareRelease.appendRow([testing,
-                                   MyStandardItem(KDGantt.TypeTask),
+                                   MyStandardItem(KDGantt.ItemType.TypeTask),
                                    MyStandardItem(now.addSecs(
-                                       3 * 60 * 60), KDGantt.StartTimeRole),
-                                   MyStandardItem(now.addDays(5), KDGantt.EndTimeRole)])
+                                       3 * 60 * 60), KDGantt.ItemDataRole.StartTimeRole),
+                                   MyStandardItem(now.addDays(5), KDGantt.ItemDataRole.EndTimeRole)])
         softwareRelease.appendRow([updateDocumentation,
-                                   MyStandardItem(KDGantt.TypeTask),
+                                   MyStandardItem(KDGantt.ItemType.TypeTask),
                                    MyStandardItem(now.addSecs(
-                                       3 * 60 * 60), KDGantt.StartTimeRole),
-                                   MyStandardItem(now.addDays(3), KDGantt.EndTimeRole)])
+                                       3 * 60 * 60), KDGantt.ItemDataRole.StartTimeRole),
+                                   MyStandardItem(now.addDays(3), KDGantt.ItemDataRole.EndTimeRole)])
         self.model.appendRow(
-            [softwareRelease, MyStandardItem(KDGantt.TypeSummary)])
+            [softwareRelease, MyStandardItem(KDGantt.ItemType.TypeSummary)])
         self.addConstraintFromItem(codeFreeze, packaging)
         self.addConstraintFromItem(codeFreeze, testing)
         self.addConstraintFromItem(codeFreeze, updateDocumentation)
