@@ -95,6 +95,9 @@ if(SHIBOKEN_BASEDIR)
             libshiboken6.abi3.so libshiboken6.abi3.so.${SHIBOKEN_MACRO_VERSION}
             libshiboken6.abi3.so.${SHIBOKEN_MACRO_VERSION}.${SHIBOKEN_MICRO_VERSION}
             libshiboken6.abi3.so.${SHIBOKEN_VERSION}
+            libshiboken6-python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}.so libshiboken6.${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}.so.${SHIBOKEN_MACRO_VERSION}
+            libshiboken6-python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}.so.${SHIBOKEN_MACRO_VERSION}.${SHIBOKEN_MICRO_VERSION}
+            libshiboken6-python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}.so.${SHIBOKEN_VERSION}
         )
     endif()
 
