@@ -49,29 +49,29 @@ class MyWidget(QWidget):
                 item = MyStandardItem("Multi Item " + str(i))
                 for j in range(0, 29, 3):
                     item.appendRow([MyStandardItem("Item " + str(j)),
-                                    MyStandardItem(KDGantt.TypeTask),
+                                    MyStandardItem(KDGantt.ItemType.TypeTask),
                                     MyStandardItem(QDateTime.currentDateTime().addDays(j),
-                                                   KDGantt.StartTimeRole),
+                                                   KDGantt.ItemDataRole.StartTimeRole),
                                     MyStandardItem(QDateTime.currentDateTime().addDays(int(j+1+i/7)),
-                                                   KDGantt.EndTimeRole),
+                                                   KDGantt.ItemDataRole.EndTimeRole),
                                     MyStandardItem(50)])
 
                 item.appendRow([MyStandardItem("Event"),
-                                MyStandardItem(KDGantt.TypeEvent),
+                                MyStandardItem(KDGantt.ItemType.TypeEvent),
                                 MyStandardItem(
-                                    QDateTime.currentDateTime(), KDGantt.StartTimeRole),
+                                    QDateTime.currentDateTime(), KDGantt.ItemDataRole.StartTimeRole),
                                 MyStandardItem(
-                                    QDateTime(), KDGantt.EndTimeRole),
+                                    QDateTime(), KDGantt.ItemDataRole.EndTimeRole),
                                 MyStandardItem("")])
 
                 topitem.appendRow([item,
-                                   MyStandardItem(KDGantt.TypeMulti),
+                                   MyStandardItem(KDGantt.ItemType.TypeMulti),
                                    MyStandardItem(""),
                                    MyStandardItem(""),
                                    MyStandardItem("")])
 
             self.model.appendRow([topitem,
-                                  MyStandardItem(KDGantt.TypeMulti),
+                                  MyStandardItem(KDGantt.ItemType.TypeMulti),
                                   MyStandardItem(""),
                                   MyStandardItem(""),
                                   MyStandardItem("")])

@@ -55,22 +55,22 @@ class MyWidget(QWidget):
             item = MyStandardItem("Multi Item " + str(i))
             for j in range(0, 20, 3):
                 item.appendRow([MyStandardItem("Item " + str(j)),
-                                MyStandardItem(KDGantt.TypeTask),
+                                MyStandardItem(KDGantt.ItemType.TypeTask),
                                 MyStandardItem(QDateTime.currentDateTime().addDays(
-                                    j), KDGantt.StartTimeRole),
+                                    j), KDGantt.ItemDataRole.StartTimeRole),
                                 MyStandardItem(QDateTime.currentDateTime().addDays(
-                                    int(j+1+i/7)), KDGantt.EndTimeRole),
+                                    int(j+1+i/7)), KDGantt.ItemDataRole.EndTimeRole),
                                 MyStandardItem(50)])
 
             item.appendRow([MyStandardItem("Event"),
-                            MyStandardItem(KDGantt.TypeEvent),
+                            MyStandardItem(KDGantt.ItemType.TypeEvent),
                             MyStandardItem(
-                                QDateTime.currentDateTime(), KDGantt.StartTimeRole),
-                            MyStandardItem(QDateTime(), KDGantt.EndTimeRole),
+                                QDateTime.currentDateTime(), KDGantt.ItemDataRole.StartTimeRole),
+                            MyStandardItem(QDateTime(), KDGantt.ItemDataRole.EndTimeRole),
                             MyStandardItem("")])
 
             self.model.appendRow([item,
-                                  MyStandardItem(KDGantt.TypeMulti),
+                                  MyStandardItem(KDGantt.ItemType.TypeMulti),
                                   MyStandardItem(""),
                                   MyStandardItem(""),
                                   MyStandardItem("")])

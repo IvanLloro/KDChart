@@ -67,11 +67,11 @@ class MyWidget(QWidget):
         # proxyModel.setSourceModel( &model );
         for h in range(0, 2):
             self.model.appendRow([MyStandardItem("Item " + str(h)),
-                                  MyStandardItem(KDGantt.TypeTask),
+                                  MyStandardItem(KDGantt.ItemType.TypeTask),
                                   MyStandardItem(QDateTime.currentDateTime().addDays(
-                                      h), KDGantt.StartTimeRole),
+                                      h), KDGantt.ItemDataRole.StartTimeRole),
                                   MyStandardItem(QDateTime.currentDateTime().addDays(
-                                      h + 1), KDGantt.EndTimeRole),
+                                      h + 1), KDGantt.ItemDataRole.EndTimeRole),
                                   MyStandardItem(50)])
 
         self.slider.setOrientation(Qt.Horizontal)

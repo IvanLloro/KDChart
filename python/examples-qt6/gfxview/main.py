@@ -101,13 +101,13 @@ if __name__ == '__main__':
         for j in range(0, 10):
             item = QStandardItem()
             item.setText("Item " + str(i))
-            item.setData(2, KDGantt.ItemTypeRole)
+            item.setData(2, KDGantt.ItemDataRole.ItemTypeRole)
             item.setData(QDateTime.currentDateTime().addDays(
-                2 * j).addMSecs(100000 * i), KDGantt.StartTimeRole)
+                2 * j).addMSecs(100000 * i), KDGantt.ItemDataRole.StartTimeRole)
             item.setData(QDateTime.currentDateTime().addDays(
-                2 * j + 1).addMSecs(100000 * i), KDGantt.EndTimeRole)
+                2 * j + 1).addMSecs(100000 * i), KDGantt.ItemDataRole.EndTimeRole)
             item.setData(randomAlignment(), Qt.TextAlignmentRole)
-            item.setData(randomPosition(), KDGantt.TextPositionRole)
+            item.setData(randomPosition(), KDGantt.ItemDataRole.TextPositionRole)
             item.setFlags(item.flags() & ~Qt.ItemIsSelectable)
             items.append(item)
         model.appendRow(items)
